@@ -6,11 +6,24 @@ public class Main {
     // Challenge question 1
     public static void countdown(int x) {
         // complete this method
+        char[] code = {'C', 'O', 'D', 'E'};
 
+        for(int i=0; x>0; i++){
+
+            if(i == 4){
+                i = 0;
+            }
+            
+            System.out.println("\n" + x + " " + code[i]);
+            x--;
+        }
+        
     }
 
     public static void question1() {
         // COMPLETE THIS METHOD
+        int userNumber = Console.getInt("Please enter a positive number: ");
+        countdown(userNumber);  // action method so don't need to print it
 
     }
 
@@ -24,8 +37,8 @@ public class Main {
 
 
     public static void main(String[] args) {
-        
-        //question1();
+
+        question1();
         //question2();
 
     }
