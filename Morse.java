@@ -6,20 +6,22 @@ public class Morse {
 
     // COMPLETE THIS METHOD 
     public static String messageToMorse(String msg) {
-        String morse = "";
+        String morse = "";    // String of morse code to be filled
 
         // complete this method - see presentation
         // convert each character in msg into a morse code and append to string morse
         // add a space separator as long as we are not at end of message
         
-        // i = 0
-        // WHILE i < length of string msg
-        //   get char in msg at position i
-        //   encode char into morseCode string (call charToMorseCode)
-        //   add morseCode to morse string
-        //   add a space (as long as we are not at last char in message)
-        //   i = i + 1
-        //ENDWHILE
+        int i = 0;
+        while(i < msg.length()){
+            
+            char c = msg.charAt(i);
+            morse = morse + charToMorseCode(c);
+            if((i != (msg.length() - 1))){  // the last character, to prevent another space
+                morse = morse + " ";
+            }
+            i = i + 1;
+        }
         
         return morse; // return the morse string version of the message
     }
@@ -33,14 +35,20 @@ public class Morse {
         // morse = "--.- ..- .." 
         
         StringTokenizer tokenizer = new StringTokenizer(morse, " ");
+        /* the second param. (space) notes what character is used to separate
+           each piece of morse code - refer to presentation for further details
+        */
+        // morse actual parameter is a string, space is a char
                
         String msg = ""; // holds decoded message
         
         // complete this method - see presentation
-        // WHILE tokenizer has more tokens
-        //   Get token from tokenizer (each token is a morseCode String repesenting a char of the message) 
-        //   Decode the morseCode string by calling charFromMorseCode and add char to msg string
-        // ENDWHILE
+        while(tokenizer.hasMoreTokens() == true){
+            String token = tokenizer.nextToken();
+            // above line gets token from tokenizer (each token is a morseCode String repesenting a char of the message) 
+            msg = msg + charFromMorseCode(token);
+            // above line decodes the morseCode string by calling charFromMorseCode and adds char to msg string
+        }
     
         return msg; // return decoded message
     }
@@ -51,7 +59,7 @@ public class Morse {
     // ===================== Encode and Decode Character to/from morse code =============
 
     // encode a character into its morse code
-    public static String charToMorseCode(char c) {
+    public static String charToMorseCode(char c) {    // returns a String
         c = Character.toLowerCase(c);
         if (c == 'a') {
             return "._";
